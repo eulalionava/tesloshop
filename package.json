@@ -14,10 +14,12 @@
     "@mui/icons-material": "^5.14.7",
     "@mui/material": "^5.14.7",
     "@mui/x-data-grid": "^6.13.0",
+    "mongoose": "^7.5.0",
     "next": "13.4.19",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-slideshow-image": "^4.2.1"
+    "react-slideshow-image": "^4.2.1",
+    "swr": "^2.2.2"
   },
   "devDependencies": {
     "@types/node": "20.5.9",
