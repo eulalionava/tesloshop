@@ -5,6 +5,14 @@ type CartActionType =
     | { type:'[Cart] - Loadcart from cokies | storage',payload:ICartProduct[]}
     | { type:'[Cart] - update products in cart',payload:ICartProduct[]}
     | { type:'[Cart] - change cart quantity',payload:ICartProduct}
+    | { type:'[Cart] - update order summary',
+        payload:{
+            numberOfItems: number;
+            subTotal: number;
+            tax: number;
+            total: number;
+        }
+    }
 
 export const cartReducer = (state:CartState,action:CartActionType):CartState=>{
     switch(action.type){
@@ -27,6 +35,11 @@ export const cartReducer = (state:CartState,action:CartActionType):CartState=>{
 
                     return action.payload;
                 })
+            }
+        case '[Cart] - update order summary':
+            return{
+                ...state,
+                ...action.payload
             }
         default:
           return state

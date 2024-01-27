@@ -8,7 +8,7 @@ import { Box, Button, Chip, Grid, Typography } from "@mui/material";
 import { CartContext } from "../../context";
 
 import { ShopLayout } from "../../components/layouts";
-import { initialData } from "../../database/products";
+import { initialData } from "../../database/seed-data";
 import { ProductSlideshow, SizeSelector } from "../../components/products";
 import { ItemCounter } from "../../components/ui";
 import { ICartProduct, IProduct, ISize } from "../../interfaces";
