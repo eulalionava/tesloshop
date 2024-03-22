@@ -1,10 +1,12 @@
 import { ICartProduct } from '../../interfaces';
-import { CartState } from './';
+import { CartState, ShippingAddress } from './';
 
 type CartActionType = 
     | { type:'[Cart] - Loadcart from cokies | storage',payload:ICartProduct[]}
+    | { type:'[Cart] - Loadaddress from cokies | storage',payload:ShippingAddress}
     | { type:'[Cart] - update products in cart',payload:ICartProduct[]}
     | { type:'[Cart] - change cart quantity',payload:ICartProduct}
+    | { type:'[Cart] - Update Address',payload:ShippingAddress}
     | { type:'[Cart] - update order summary',
         payload:{
             numberOfItems: number;
@@ -19,7 +21,14 @@ export const cartReducer = (state:CartState,action:CartActionType):CartState=>{
         case '[Cart] - Loadcart from cokies | storage':
             return{
                ...state,
+               isLoaded:true,
                cart:[...action.payload]
+            }
+        case '[Cart] - Loadaddress from cokies | storage':
+        case '[Cart] - Update Address':
+            return{
+               ...state,
+               shippingAddress: action.payload
             }
         case '[Cart] - update products in cart':
             return{
