@@ -9,8 +9,8 @@ jobs:
         uses: haythem/public-ip@v1.3
       - name: Hola mundo
         run: echo hola mundo desde ${{steps.ip.outputs.ipv4}}
-      - uses: actions/checkout@v1.3
-      - uses: actions/checkout@v1.3
+      - uses: actions/checkout@v3
+      - uses: actions/checkout@v3
         with:
           node-version: 18
       - name: Run index
