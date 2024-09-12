@@ -4,15 +4,10 @@ jobs:
   hola-mundo:
     runs-on: ubuntu-latest
     steps:
-      - name: Public ip
-        id: ip
-        uses: haythem/public-ip@v1.3
-      - name: Hola mundo
-        run: echo hola mundo desde ${{steps.ip.outputs.ipv4}}
-      - uses: actions/checkout@v3
-      - uses: actions/checkout@v3
-        with:
-          node-version: 18
-      - name: Run index
-        run: node index.js
+      - name: Checkout
+        uses: actions/checkout@v3
+      - name: variable
+        run: echo "USERNAME=${{github.actor}}" >> $GITHUB_ENV
+      - name: Correr el script
+        run: node hola_mundo.js
 
