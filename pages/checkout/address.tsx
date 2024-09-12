@@ -34,6 +34,7 @@ const getAddressFromCookie = ():FormData=>{
 const AdressPage = ()=>{
     const router = useRouter();
     const { updateAddress } = useContext(CartContext);
+    
     const {register,handleSubmit,watch,formState: { errors } } = useForm<FormData>({
         defaultValues:getAddressFromCookie()
     });

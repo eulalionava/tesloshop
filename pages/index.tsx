@@ -6,9 +6,8 @@ import { FullScreenLoading } from "../components/ui";
 
 
 
-export default function Home() {
 
-  
+export default function Home() {
 
   const { products,isLoading } = useProducts('/products');
 

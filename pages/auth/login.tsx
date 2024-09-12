@@ -1,5 +1,6 @@
 import { useContext, useState } from 'react';
 import NextLink from 'next/link';
+import { getSession, signIn } from 'next-auth/react'
 
 import { Box, Button, Grid, TextField, Typography,Link, Chip } from "@mui/material"
 import { AuthLayout } from "../../components/layouts"
@@ -9,6 +10,7 @@ import { tesloApi } from '../../api';
 import { ErrorOutline } from '@mui/icons-material';
 import { AuthContext } from '../../context';
 import { useRouter } from 'next/router';
+import { GetServerSideProps } from 'next';
 
 type FormData = {
     email:string,
@@ -25,15 +27,19 @@ const LoginPage = ()=>{
         
         setShowError(false);
         
-        const isValidLogin = await loginUser(email,password);
+        // const isValidLogin = await loginUser(email,password);
 
-        if(!isValidLogin){
-            setShowError(true);
-            setTimeout(()=>setShowError(false),3000);
-            return;
-        }
-        const destination = router.query.p?.toString() || '/'
-        router.replace(destination);
+        // if(!isValidLogin){
+        //     setShowError(true);
+        //     setTimeout(()=>setShowError(false),3000);
+        //     return;
+        // }
+        // const destination = router.query.p?.toString() || '/'
+        // router.replace(destination);
+
+        await signIn('credentials',{email,password});
+
+
 
     }
 
@@ -109,6 +115,29 @@ const LoginPage = ()=>{
             </form>
         </AuthLayout>
     )
+}
+
+export const getServerSidePros:GetServerSideProps = async({req,query})=>{
+
+    const session = await getSession({req});
+    console.log('sesionnnn',{session});
+
+    const { p = '/'} = query;
+
+    if(session){
+        return {
+            redirect:{
+                destination:p.toString(),
+                permanent:false
+            }
+        }
+    }
+
+    return {
+        props:{
+
+        }
+    }
 }
 
 export default LoginPage;
