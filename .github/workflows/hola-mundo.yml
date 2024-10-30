@@ -1,5 +1,5 @@
 name: hola-mundo
-run-name: Conicación entre jops
+run-name: Comunicación entre jops
 on: [push]
 
 jobs:
